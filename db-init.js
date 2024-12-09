@@ -70,6 +70,6 @@ const initDb = async () => {
     pool.end(); // Close the database connection
   }
 };
-
+// module.export= initDb;
 // Run the initialization
 initDb();

@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const musicRoutes = require("./routes/musicRoutes");
+
 // Import models to trigger table creation
 require("./models/user");
 require("./models/artist");
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/music", musicRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
