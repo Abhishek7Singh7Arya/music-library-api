@@ -4,6 +4,7 @@ const pool = require("../db");
 require("dotenv").config();
 
 exports.signup = async (req, res) => {
+    console.log('Received signup request:', req.body);
     const { email, password } = req.body;
   
     if (!email || !password) {
