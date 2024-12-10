@@ -1,4 +1,5 @@
 const pool = require("../db");
+const bcrypt = require("bcrypt");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -48,13 +49,16 @@ exports.updatePassword = async (req, res) => {
     const userId = req.user.userId;
   
     try {
+
       const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [userId]);
       if (result.rows.length === 0) {
         return res.status(404).json({ status: 404, message: "User not found.", data: null });
       }
-  
+ 
+      
       const user = result.rows[0];
       const isMatch = await bcrypt.compare(old_password, user.password);
+ 
   
       if (!isMatch) {
         return res.status(400).json({ status: 400, message: "Old password is incorrect.", data: null });
